@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cafe Menu</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f5f1;
+            margin: 0;
+            padding: 20px;
+            background-image: url('https://www.publicdomainpictures.net/pictures/280000/velka/wood-texture-1552910137SuM.jpg');
+            background-size: cover;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            color: #7f5539;
+            font-size: 3em;
+            margin-bottom: 30px;
+        }
+
+        .menu-container {
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 8px;
+            padding: 20px;
+            max-width: 800px;
+            margin: auto;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .navigation {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .navigation a {
+            text-decoration: none;
+            padding: 10px 20px;
+            margin: 5px;
+            background-color: #7f5539;
+            color: white;
+            font-size: 1.2em;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .navigation a:hover {
+            background-color: #8a6549;
+        }
+
+        .category {
+            margin-bottom: 20px;
+        }
+
+        .category h2 {
+            font-size: 2em;
+            margin-bottom: 10px;
+            color: #8a5a44;
+        }
+
+        .menu-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            padding: 10px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .menu-item img {
+            width: 80px;
+            height: 80px;
+            border-radius: 5px;
+            margin-right: 20px;
+        }
+
+        .menu-item label {
+            flex-grow: 1;
+            font-size: 1.2em;
+        }
+
+        .menu-item input {
+            margin-right: 10px;
+        }
+
+        button {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background-color: #7f5539;
+            color: white;
+            font-size: 1.5em;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #8a6549;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to Our Cafe</h1>
+    
+    <div class="menu-container">
+        <div class="navigation">
+            <a href="#starters">Starters</a>
+            <a href="#main-course">Main Course</a>
+            <a href="#drinks">Drinks</a>
+        </div>
+
+        <form id="orderForm">
+            <div id="starters" class="category">
+                <h2>Starters</h2>
+                <div class="menu-item">
+                    <img src="https://via.placeholder.com/80x80.png?text=Bruschetta" alt="Bruschetta">
+                    <input type="checkbox" id="item1" name="item" value="Bruschetta">
+                    <label for="item1">Bruschetta ($3.50)</label>
+                </div>
+                <div class="menu-item">
+                    <img src="https://via.placeholder.com/80x80.png?text=Garlic+Bread" alt="Garlic Bread">
+                    <input type="checkbox" id="item2" name="item" value="Garlic Bread">
+                    <label for="item2">Garlic Bread ($2.50)</label>
+                </div>
+            </div>
+
+            <div id="main-course" class="category">
+                <h2>Main Course</h2>
+                <div class="menu-item">
+                    <img src="https://via.placeholder.com/80x80.png?text=Sandwich" alt="Sandwich">
+                    <input type="checkbox" id="item3" name="item" value="Sandwich">
+                    <label for="item3">Sandwich ($5.00)</label>
+                </div>
+                <div class="menu-item">
+                    <img src="https://via.placeholder.com/80x80.png?text=Salad" alt="Salad">
+                    <input type="checkbox" id="item4" name="item" value="Salad">
+                    <label for="item4">Salad ($4.50)</label>
+                </div>
+                <div class="menu-item">
+                    <img src="https://via.placeholder.com/80x80.png?text=Pasta" alt="Pasta">
+                    <input type="checkbox" id="item5" name="item" value="Pasta">
+                    <label for="item5">Pasta ($7.00)</label>
+                </div>
+            </div>
+
+            <div id="drinks" class="category">
+                <h2>Drinks</h2>
+                <div class="menu-item">
+                    <img src="https://via.placeholder.com/80x80.png?text=Coffee" alt="Coffee">
+                    <input type="checkbox" id="item6" name="item" value="Coffee">
+                    <label for="item6">Coffee ($2.00)</label>
+                </div>
+                <div class="menu-item">
+                    <img src="https://via.placeholder.com/80x80.png?text=Tea" alt="Tea">
+                    <input type="checkbox" id="item7" name="item" value="Tea">
+                    <label for="item7">Tea ($1.50)</label>
+                </div>
+                <div class="menu-item">
+                    <img src="https://via.placeholder.com/80x80.png?text=Smoothie" alt="Smoothie">
+                    <input type="checkbox" id="item8" name="item" value="Smoothie">
+                    <label for="item8">Smoothie ($4.00)</label>
+                </div>
+            </div>
+
+            <button type="button" onclick="submitOrder()">Submit Order</button>
+        </form>
+    </div>
+
+    <script>
+        function submitOrder() {
+            let selectedItems = [];
+            const items = document.querySelectorAll('input[name="item"]:checked');
+            items.forEach((item) => {
+                selectedItems.push(item.value);
+            });
+
+            if (selectedItems.length === 0) {
+                alert("Please select at least one item.");
+                return;
+            }
+
+            const orderData = {
+                items: selectedItems,
+                timestamp: new Date().toISOString()
+            };
+
+            fetch('https://your-server-endpoint.com/submit-order', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(orderData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert("Order submitted successfully!");
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert("There was an error submitting your order. Please try again.");
+            });
+        }
+    </script>
+</body>
+</html>
